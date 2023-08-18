@@ -11,5 +11,16 @@ export default defineConfig({
         cwd: createRequire(import.meta.url).resolve('@preact/preset-vite')
       }
     })
-  ]
+  ],
+  resolve: {
+    alias: {
+      'react-dom/test-utils': 'preact/test-utils',
+      'react-dom': 'preact/compat', // Must be below test-utils
+      'react/jsx-runtime': 'preact/jsx-runtime',
+      react: 'preact/compat'
+    }
+  },
+  ssr: {
+    noExternal: ['@mui/*']
+  }
 })
